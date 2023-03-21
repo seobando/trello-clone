@@ -18,7 +18,7 @@ const TrelloList = () => {
       <CssBaseline />
       <ListTitle />
       <TrelloCard />
-      <AddCardOrList />
+      <AddCardOrList type="card" />
     </Paper>
   );
 };
