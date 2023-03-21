@@ -1,5 +1,5 @@
 import { Typography, makeStyles } from "@material-ui/core";
-import { MoreHorizIcon } from "@material-ui/icons/MoreHoriz";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const useStyle = makeStyles((theme) => ({
   title: {

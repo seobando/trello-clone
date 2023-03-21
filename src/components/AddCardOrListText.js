@@ -4,7 +4,7 @@ import {
   makeStyles,
   IconButton,
   Button,
-  Fade,
+  alpha,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -27,7 +27,7 @@ const useStyle = makeStyles((theme) => ({
     background: "#5aac44",
     color: "#fff",
     "&:hover": {
-      background: Fade("#5aac44", 0.75),
+      background: alpha("#5aac44", 0.75),
     },
     options: {
       flexGrow: 1,
