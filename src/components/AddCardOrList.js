@@ -29,10 +29,10 @@ const AddCardOrList = ({ type }) => {
   return (
     <div className={classes.root}>
       <Collapse in={open}>
-        <AddCardOrListText type={type} />
+        <AddCardOrListText type={type} setOpen={setOpen}/>
       </Collapse>
       <Collapse in={!open}>
-        <Paper className={classes.addCardOrListText}>
+        <Paper className={classes.addCardOrListText} onClick={()=>setOpen(true)}>
           <Typography>
             {type === "card" ? "+ Add a card" : " + Add another list"}
           </Typography>

@@ -7,11 +7,11 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const TrelloCard = () => {
+const TrelloCard = ({ card }) => {
   const classes = useStyle();
   return (
     <div>
-      <Paper className={classes.trelloCard}>Card</Paper>
+      <Paper className={classes.trelloCard}>{card.title}</Paper>
     </div>
   );
 };

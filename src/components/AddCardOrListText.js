@@ -35,7 +35,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const AddCardOrListText = ({ type }) => {
+const AddCardOrListText = ({ type, setOpen }) => {
   const classes = useStyle();
   const [title, setTitle] = useState("");
   return (
@@ -43,7 +43,7 @@ const AddCardOrListText = ({ type }) => {
       <Paper className={classes.card}>
         <InputBase
           multiline
-          onBlur=""
+          onBlur={() => setOpen(false)}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={
@@ -59,7 +59,7 @@ const AddCardOrListText = ({ type }) => {
           <Button className={classes.btnConfirm}>
             {type === "card" ? "Add card" : "Add list"}
           </Button>
-          <IconButton>
+          <IconButton onClick={()=>setOpen(false)}>
             <ClearIcon />
           </IconButton>
         </div>
