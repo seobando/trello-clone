@@ -7,6 +7,7 @@ import mockData from "./mockdata.js";
 import React, { useState } from "react";
 import ContextAPI from "./ContextAPI";
 import uuid from "react-uuid";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -70,18 +71,31 @@ function App() {
     });
   };
 
+  const onDragEnd = () => {};
+
   return (
     <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
       <div className={classes.root}>
-        <div className={classes.container}>
-          {data.listIds.map((listID) => {
-            const list = data.lists[listID];
-            return <TrelloList list={list} key={listID} />;
-          })}
-          <div>
-            <AddCardOrList type="list" />
-          </div>
-        </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="12345" type="list" direction="horizontal">
+            {(provided) => (
+              <div
+                className={classes.container}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {data.listIds.map((listID, index) => {
+                  const list = data.lists[listID];
+                  return <TrelloList list={list} key={listID} index={index} />;
+                })}
+                <div>
+                  <AddCardOrList type="list" />
+                  {provided.placeholder}
+                </div>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
     </ContextAPI.Provider>
   );
