@@ -153,9 +153,9 @@ function App() {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {data.listIds.map((listID, index) => {
-                  const list = data.lists[listID];
-                  return <TrelloList list={list} key={listID} index={index} />;
+                {data.listIds.map((listId, index) => {
+                  const list = data.lists[listId];
+                  return <TrelloList list={list} key={listId} index={index} />;
                 })}
                 <div>
                   <AddCardOrList type="list" />
