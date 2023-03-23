@@ -18,7 +18,7 @@ const TrelloList = ({ list, index }) => {
     <Draggable draggableId={list.id} index={index}>
       {(provided) => (
         <div ref={provided.innerRef} {...provided.draggableProps}>
-          <Paper className={classes.root}>
+          <Paper className={classes.root} {...provided.dragHandleProps}>
             <CssBaseline />
             <ListTitle title={list.title} listId={list.id} />
             <Droppable droppableId={list.id}>

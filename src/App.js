@@ -71,7 +71,76 @@ function App() {
     });
   };
 
-  const onDragEnd = () => {};
+  const onDragEnd = (result) => {
+    const {
+      destination,
+      destination: { droppableId: destdroppableId, index: destIndex },
+      source,
+      source: { droppableId: sourcedroppableId, index: sourceIndex },
+      draggableId,
+      type,
+    } = result;
+    console.table([
+      {
+        sourcedroppableId,
+        destdroppableId,
+        draggableId,
+      },
+    ]);
+
+    console.table([
+      {
+        type,
+        sourceIndex,
+        destIndex,
+      },
+    ]);
+
+    if (!destination) {
+      return;
+    }
+
+    if (type === "list") {
+      const newListIds = data.listIds;
+      newListIds.splice(source, 1);
+      newListIds.splice(destIndex, 0, draggableId);
+      return;
+    }
+
+    const sourceList = data.lists[sourcedroppableId];
+    const destinationList = data.lists[destdroppableId];
+    const draggingCard = sourceList.cards.filter(
+      (card) => card.id === draggableId
+    );
+
+    console.table([
+      {
+        draggingCard,
+        sourceList,
+        destinationList,
+      },
+    ]);
+
+    if (sourcedroppableId === destdroppableId) {
+      sourceList.card.splice(sourceIndex, 1);
+      destinationList.cards.splice(destIndex, 0, draggingCard);
+      setData({
+        ...data,
+        lists: {
+          ...data.lists,
+          [sourceList.id]: destinationList,
+        },
+      });
+    } else {
+      sourceList.cards.splice(sourceIndex, 1);
+      destinationList.cards.splice(destIndex, 0, draggingCard);
+      setData({
+        ...data.lists,
+        [sourceList.id]: sourceList,
+        [destinationList.id]: destinationList,
+      });
+    }
+  };
 
   return (
     <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
