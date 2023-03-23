@@ -23,13 +23,13 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const AddCardOrList = ({ type }) => {
+const AddCardOrList = ({ type, listId }) => {
   const classes = useStyle();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <div className={classes.root}>
       <Collapse in={open}>
-        <AddCardOrListText type={type} setOpen={setOpen}/>
+        <AddCardOrListText type={type} setOpen={setOpen} listId={listId}/>
       </Collapse>
       <Collapse in={!open}>
         <Paper className={classes.addCardOrListText} onClick={()=>setOpen(true)}>

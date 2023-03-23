@@ -6,6 +6,7 @@ import AddCardOrList from "./components/AddCardOrList";
 import mockData from "./mockdata.js";
 import React, { useState } from "react";
 import ContextAPI from "./ContextAPI";
+import uuid from "react-uuid";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -38,8 +39,39 @@ function App() {
     });
   };
 
+  const addCard = (title, listId) => {
+    const newCardId = uuid();
+    const newCard = {
+      id: newCardId,
+      title: title,
+    };
+    const list = data.lists[listId];
+    list.cards = [...list.cards, newCard];
+    setData({
+      ...data,
+      list: {
+        ...data.lists,
+        [listId]: list,
+      },
+    });
+  };
+  const addList = (title) => {
+    const newListId = uuid();
+    setData({
+      listIds: [...data.listIds, newListId],
+      lists: {
+        ...data.lists,
+        [newListId]: {
+          id: newListId,
+          title: title,
+          cards: [],
+        },
+      },
+    });
+  };
+
   return (
-    <ContextAPI.Provider value={{ updateListTitle }}>
+    <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
       <div className={classes.root}>
         <div className={classes.container}>
           {data.listIds.map((listID) => {

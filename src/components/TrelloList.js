@@ -20,7 +20,7 @@ const TrelloList = ({ list }) => {
       {list.cards.map((card) => (
         <TrelloCard card={card} key={card.id} />
       ))}
-      <AddCardOrList type="card" />
+      <AddCardOrList type="card" listId={list.id}/>
     </Paper>
   );
 };
