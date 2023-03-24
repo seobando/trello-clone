@@ -102,7 +102,7 @@ function App() {
 
     if (type === "list") {
       const newListIds = data.listIds;
-      newListIds.splice(source, 1);
+      newListIds.splice(sourceIndex, 1);
       newListIds.splice(destIndex, 0, draggableId);
       return;
     }
@@ -122,7 +122,7 @@ function App() {
     ]);
 
     if (sourcedroppableId === destdroppableId) {
-      sourceList.card.splice(sourceIndex, 1);
+      sourceList.cards.splice(sourceIndex, 1);
       destinationList.cards.splice(destIndex, 0, draggingCard);
       setData({
         ...data,
