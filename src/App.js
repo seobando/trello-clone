@@ -100,6 +100,13 @@ function App() {
       return;
     }
 
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }    
+
     if (type === "list") {
       const newListIds = data.listIds;
       newListIds.splice(sourceIndex, 1);
@@ -111,7 +118,7 @@ function App() {
     const destinationList = data.lists[destdroppableId];
     const draggingCard = sourceList.cards.filter(
       (card) => card.id === draggableId
-    );
+    )[0];
 
     console.table([
       {
@@ -146,7 +153,7 @@ function App() {
     <ContextAPI.Provider value={{ updateListTitle, addCard, addList }}>
       <div className={classes.root}>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="12345" type="list" direction="horizontal">
+          <Droppable droppableId="all-lists" type="list" direction="horizontal">
             {(provided) => (
               <div
                 className={classes.container}
