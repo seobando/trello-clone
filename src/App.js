@@ -44,7 +44,7 @@ function App() {
     const newCardId = uuid();
     const newCard = {
       id: newCardId,
-      title: title,
+      title,
     };
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
@@ -64,7 +64,7 @@ function App() {
         ...data.lists,
         [newListId]: {
           id: newListId,
-          title: title,
+          title,
           cards: [],
         },
       },
@@ -139,13 +139,19 @@ function App() {
         },
       });
     } else {
+      console.log(sourceList)
+      console.log(destinationList)
       sourceList.cards.splice(sourceIndex, 1);
       destinationList.cards.splice(destIndex, 0, draggingCard);
+      console.log(sourceList)
+      console.log(destinationList)      
+      /*
       setData({
         ...data.lists,
         [sourceList.id]: sourceList,
         [destinationList.id]: destinationList,
       });
+      */
     }
   };
 
