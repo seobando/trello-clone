@@ -142,19 +142,13 @@ function App() {
         },
       });
     } else {
-      console.log(sourceList)
-      console.log(destinationList)
       sourceList.cards.splice(sourceIndex, 1);
-      destinationList.cards.splice(destIndex, 0, draggingCard);
-      console.log(sourceList)
-      console.log(destinationList)      
-      /*
+      destinationList.cards.splice(destIndex, 0, draggingCard);  
       setData({
         ...data.lists,
         [sourceList.id]: sourceList,
         [destinationList.id]: destinationList,
       });
-      */
     }
   };
 
