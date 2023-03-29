@@ -9,7 +9,7 @@ import {
 import React, { useContext, useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import ContextAPI from "../ContextAPI";
+import contextAPI from "../ContextAPI";
 
 const useStyle = makeStyles((theme) => ({
   card: {
@@ -39,7 +39,7 @@ const useStyle = makeStyles((theme) => ({
 const AddCardOrListText = ({ type, setOpen, listId }) => {
   const classes = useStyle();
   const [title, setTitle] = useState("");
-  const { addCard, addList } = useContext(ContextAPI);
+  const { addCard, addList } = useContext(contextAPI);
   const handleAddCardOrList = () => {
     if (type === "card") {
       addCard(title, listId);
@@ -54,8 +54,8 @@ const AddCardOrListText = ({ type, setOpen, listId }) => {
       <Paper className={classes.card}>
         <InputBase
           multiline
-          onBlur={() => setOpen(false)}
           value={title}
+          onBlur={() => setOpen(false)}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={
             type === "card"

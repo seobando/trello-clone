@@ -24,8 +24,9 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const AddCardOrList = ({ type, listId }) => {
-  const classes = useStyle();
   const [open, setOpen] = useState(false);
+  const classes = useStyle();
+  
   return (
     <div className={classes.root}>
       <Collapse in={open}>

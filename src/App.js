@@ -27,6 +27,7 @@ const useStyle = makeStyles((theme) => ({
 function App() {
   const classes = useStyle();
   const [data, setData] = useState(mockData);
+  console.log(data)
 
   const updateListTitle = (updatedTitle, listId) => {
     const list = data.lists[listId];
@@ -48,6 +49,7 @@ function App() {
     };
     const list = data.lists[listId];
     list.cards = [...list.cards, newCard];
+    console.log(list)
     setData({
       ...data,
       list: {
@@ -56,6 +58,7 @@ function App() {
       },
     });
   };
+
   const addList = (title) => {
     const newListId = uuid();
     setData({

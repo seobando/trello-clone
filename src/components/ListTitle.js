@@ -1,7 +1,7 @@
 import { Typography, makeStyles, InputBase } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { useContext, useState } from "react";
-import ContextAPI from "../ContextAPI";
+import contextAPI from "../ContextAPI";
 
 const useStyle = makeStyles((theme) => ({
   title: {
@@ -27,7 +27,7 @@ const ListTitle = ({ title, listId }) => {
   const classes = useStyle();
   const [open, setOpen] = useState(true);
   const [newTitle, setNewTitle] = useState(title);
-  const {updateListTitle} = useContext(ContextAPI)
+  const {updateListTitle} = useContext(contextAPI)
 
   const handleBlur = () => {
     updateListTitle(newTitle,listId)
