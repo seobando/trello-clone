@@ -101,14 +101,7 @@ function App() {
 
     if (!destination) {
       return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }    
+    }   
 
     if (type === "list") {
       const newListIds = data.listIds;
@@ -144,12 +137,13 @@ function App() {
     } else {
       sourceList.cards.splice(sourceIndex, 1);
       destinationList.cards.splice(destIndex, 0, draggingCard);  
-      setData({
+      /*setData({
         ...data.lists,
         [sourceList.id]: sourceList,
         [destinationList.id]: destinationList,
-      });
+      });*/
     }
+
   };
 
   return (
