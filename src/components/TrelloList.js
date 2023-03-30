@@ -10,6 +10,12 @@ const useStyle = makeStyles((theme) => ({
     background: "#ebecf0",
     margin: theme.spacing(1),
   },
+  taksList:{
+    padding: "8px",
+    transition: "background-color 0.2s ease",
+    flexGrow: "1",
+    minHeight: "100px",
+  }
 }));
 
 const TrelloList = ({ list, index }) => {
@@ -23,7 +29,7 @@ const TrelloList = ({ list, index }) => {
             <ListTitle title={list.title} listId={list.id} />
             <Droppable droppableId={list.id} type="card">
               {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
+                <div className={classes.taksList} ref={provided.innerRef} {...provided.droppableProps}>
                   {list.cards.map((card, index) => (
                     <TrelloCard card={card} key={card.id} index={index} />
                   ))}
